@@ -22,16 +22,19 @@ def webhook():
 
     parameters = req['queryResult']['parameters']
 
-    print('Dialogflow Parameters:')
-    print(json.dumps(parameters, indent=4))
+    part_number = parameters['any']
 
-        
-    if action == 'info_parte':
-        res = get_part_info(parameters['any'])
-    elif action == 'precio_parte':
-        res = get_part_price(parameters['any'])
+    if part_number != "":
+            
+        if action == 'info_parte':
+            res = get_part_info(part_number)
+        elif action == 'precio_parte':
+            res = get_part_price(part_number)
+        else:
+            log.error('Unexpected action.')
+
     else:
-        log.error('Unexpected action.')
+        res = {"fulfillmentText":'Favor de especificar el número de parte'}
 
     print('Action: ' + action)
     print(res)
@@ -110,7 +113,7 @@ def part_request(part_number):
     response = requests.request("GET", url, json=payload, headers=headers)
 
     auth = None
-    return json.loads(response.content)
+    return response.json()
 
     
 
@@ -128,7 +131,12 @@ def authenticate():
 
     response = requests.request("POST", url, json=payload, headers=headers)
 
-    return json.loads(response.content)
+    print(response)
+    print(response.content)
+
+    print(type(json.loads(response.content)))
+
+    return response.json()
 
 
 if __name__ == '__main__':
