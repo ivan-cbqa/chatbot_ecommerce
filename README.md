@@ -19,7 +19,7 @@ Existen cuatro elementos importantes que debemos considerar
 Antes de iniciar, asegúrate de tener los siguientes requerimientos:
 
 - Tener [Python 3](https://www.python.org/downloads/) instalado en tu compuradora.
-- Descargar [ngrok](https://ngrok.com/download) y crear una cuenta.
+- Descargar [ngrok](https://ngrok.com) y crear una cuenta.
 - Acceder a  [DialogFlow](https://console.dialogflow.com/api-client/#/login) con una cuenta de Google.
 - Tener una [página de Facebook](https://www.facebook.com/help/104002523024878?helpref=about_content) creada. 
 - El editor de textos de su preferencia. 
@@ -43,16 +43,14 @@ Antes de iniciar, asegúrate de tener los siguientes requerimientos:
 #### Creación de ambiente virtual (muy recomendable)
 
 1. Nos vamos a la carpeta donde se encuentra el repositorio.
-2. En la consola ejecutamos el siguiente comando para crear nuestro ambiente virtual:
+2. Si aun no tenemos instalado el comando para crear ambientes virtuales en python ejecutamos: 
+```bash 
+pip install virtualenv
+```
+3. En la consola ejecutamos el siguiente comando para crear nuestro ambiente virtual:
 
 ```bash
 python -m venv venv
-```
-
-3. Instalamos los requirements con el siguiente comando:
-
-```bash
-pip install -r requierements.txt
 ```
 
 4. Activamos nuestro ambiente virtual (comando para Windows):
@@ -60,26 +58,42 @@ pip install -r requierements.txt
 ```bash
 .\venv\Scripts\activate
 ```
-5. Corremos nuestra aplicación 
+
+5. Instalamos los requirements con el siguiente comando:
+
+```bash
+pip install -r requierements.txt
+```
+
+6. Corremos nuestra aplicación 
 ```bash
 python main.py
 ```
 
-6. Ejecutamos ngrok.exe (previamente descargado y configurado)
-7. Creamos el túnel a nuestro local host:
+7. Ejecutamos ngrok.exe (previamente descargado y configurado)
+
+8. Configuramos el token de autorizacion necesario para usar Ngrok. Este token se puede obtener desde la pagina de [Ngrok](https://ngrok.com/)
+
+```bash
+ngrok authtoken <TOKEN>
+
+```
+
+9. Creamos el túnel a nuestro local host:
 
 ```bash
 ngrok http 5000
 ```
 
-8. Copiamos y guardamos la url https que nos brinda Ngrok.
+10. Copiamos y guardamos la url https que nos brinda Ngrok.
 
 ## Configuración del Fullfiment en DialogFlow
 
 1. En la consola de DialogFlow nos dirigimos a la parte de ***Fulfillment***
 2. Habilitamos el botón de ***Webhook***.
 3. Pegamos la url generada por Ngrok donde doce ***Enter URL***.
-4. Provamos que nuestro chatbot funcione en la parte que dice ***try it now***, en la esquina superior derecha. 
+4. Damos click en guardar.
+5. Probamos que nuestro chatbot funcione en la parte que dice ***try it now***, en la esquina superior derecha. 
 
 ## Integración con Facebook Messenger
 
@@ -95,7 +109,7 @@ ngrok http 5000
 10. En la parte de ***Tokens de acceso*** seleccionar la página de Facebook en la que quieres integrar el chatbot y dar click en ***Editar permisos***. 
 11. Colocar el Token de acceso a la página generado en la Integración con Messenger de DialogFlow.
 12. Dar click a ***Sucribirse a eventos*** en la parte de ***Webhooks*** y colocar el URL de devolución de llamada y el token que aparecen en DialogFlow.
-
+13. Seleccionar la pagina a la que te deseas suscribir y dar click en ***Suscribirse***
 ## Agregar Evaluadores
 
 El chatbot creado se encuentra en Status de desarrollo hasta que el equipo de Facebook lo verifique. Por esta razón es necesario agregar usuarios como evaluadores de la app de facebook. 
