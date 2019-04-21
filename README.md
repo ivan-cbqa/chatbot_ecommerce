@@ -43,6 +43,7 @@ Antes de iniciar, asegúrate de tener los siguientes requerimientos:
 -   Descargar [ngrok](https://ngrok.com/download) y crear una cuenta.
 -   Acceder a  [DialogFlow](https://console.dialogflow.com/api-client/#/login)  con una cuenta de Google.
 -   Tener una página de [Facebook](https://www.facebook.com/help/104002523024878?helpref%3Dabout_content) creada.
+-   Tener una cuenta de [Twilio](https://www.twilio.com/) creada.
 -   El editor de textos de su preferencia.
 
 # Configuración de DialogFlow<a id="sec-3" name="sec-3"></a>
@@ -65,7 +66,9 @@ Antes de iniciar, asegúrate de tener los siguientes requerimientos:
 1.  Nos vamos a la carpeta donde se encuentra el repositorio.
 2.  En la consola ejecutamos el siguiente comando para crear nuestro ambiente virtual:
 
-    python -m venv venv
+\`\`\`bash
+python -m venv venv
+\`\`\`\`
 
 1.  Instalamos los requirements con el siguiente comando:
 
