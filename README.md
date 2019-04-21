@@ -1,4 +1,5 @@
 # Chatbot de E-commerce - test by Bosch
+
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
@@ -25,6 +26,8 @@
 </ul>
 </div>
 </div>
+
+
 
 # Introducción<a id="sec-1" name="sec-1"></a>
 
@@ -71,7 +74,7 @@ Antes de iniciar, asegúrate de tener los siguientes requerimientos:
 1.  Nos vamos a la carpeta donde se encuentra el repositorio.
 2.  En la consola ejecutamos el siguiente comando para crear nuestro ambiente virtual:
 
-```bash
+\`\`\`bash
 python -m venv venv
 ```
 
