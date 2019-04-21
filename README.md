@@ -54,6 +54,7 @@ Antes de iniciar, asegúrate de tener los siguientes requerimientos:
 -   Tener una cuenta de [Twilio](https://www.twilio.com/) creada.
 -   El editor de textos de su preferencia.
 
+
 # Configuración de DialogFlow<a id="sec-3" name="sec-3"></a>
 
 1.  Accedemos a la consola de DialogFlow y creamos un nuevo agente. Debemos asegurarnos de seleccionar "español" como idioma principal.
@@ -71,37 +72,59 @@ Antes de iniciar, asegúrate de tener los siguientes requerimientos:
 
 ## Creación de ambiente virtual (muy recomendable)<a id="sec-5-1" name="sec-5-1"></a>
 
-1.  Nos vamos a la carpeta donde se encuentra el repositorio.
-2.  En la consola ejecutamos el siguiente comando para crear nuestro ambiente virtual:
+
+1. Nos vamos a la carpeta donde se encuentra el repositorio.
+2. Si aun no tenemos instalado el comando para crear ambientes virtuales en python ejecutamos: 
+```bash 
+pip install virtualenv
+```
+3. En la consola ejecutamos el siguiente comando para crear nuestro ambiente virtual:
+
 
 \`\`\`bash
 python -m venv venv
 ```
 
-1.  Instalamos los requirements con el siguiente comando:
+
+4. Activamos nuestro ambiente virtual (comando para Windows):
+
+
+```bash
+.\venv\Scripts\activate
+```
+
+
+5. Instalamos los requirements con el siguiente comando:
 
 ```bash
 pip install -r requierements.txt
 ```
 
-1.  Activamos nuestro ambiente virtual (comando para Windows):
 
-```bash
-.\venv\Scripts\activate
-```
-1.  Corremos nuestra aplicación
-
+6. Corremos nuestra aplicación 
 ```bash
 python main.py
 ```
-1.  Ejecutamos ngrok.exe (previamente descargado y configurado)
-2.  Creamos el túnel a nuestro local host:
+
+7. Ejecutamos ngrok.exe (previamente descargado y configurado)
+
+8. Configuramos el token de autorizacion necesario para usar Ngrok. Este token se puede obtener desde la pagina de [Ngrok](https://ngrok.com/)
+
+```bash
+ngrok authtoken <TOKEN>
+
+```
+
+9. Creamos el túnel a nuestro local host:
+
 
 ```bash
 ngrok http 5000
 ```
 
-1.  Copiamos y guardamos la url https que nos brinda Ngrok.
+
+10. Copiamos y guardamos la url https que nos brinda Ngrok.
+
 
 # Configuración del Fullfiment en DialogFlow<a id="sec-6" name="sec-6"></a>
 
@@ -109,6 +132,7 @@ ngrok http 5000
 2.  Habilitamos el botón de **Webhook**.
 3.  Pegamos la url generada por Ngrok donde doce **Enter URL**.
 4.  Probamos que nuestro chatbot funcione en la parte que dice **try it now**, en la esquina superior derecha.
+
 
 # Integración con Facebook Messenger<a id="sec-7" name="sec-7"></a>
 
@@ -123,9 +147,10 @@ ngrok http 5000
 9.  Buscar **Messenger** en la parte de **Agregar productos** y dar click en **Configurar**
 10. En la parte de **Tokens de acceso** seleccionar la página de Facebook en la que quieres integrar el chatbot y dar click en **Editar permisos**.
 11. Colocar el Token de acceso a la página generado en la Integración con Messenger de DialogFlow.
-12. Dar click a **Sucribirse a eventos** en la parte de **Webhooks** y colocar el URL de devolución de llamada y el token que aparecen en DialogFlow.
+12. Dar click a ***Sucribirse a eventos*** en la parte de ***Webhooks*** y colocar el URL de devolución de llamada y el token que aparecen en DialogFlow.
+13. Seleccionar la pagina a la que te deseas suscribir y dar click en ***Suscribirse***
+## Agregar Evaluadores
 
-# Integración con Twilio (Whatsapp)<a id="sec-8" name="sec-8"></a>
 
 1.  En la cuenta de Tiwlio ir a la sección **All Projects** en la parte superior izquierda.
 2.  Crea un nuevo proyecto, elige la opción **Products** y a continuacion **Programable SMS**
@@ -156,3 +181,4 @@ Para que los evaluadores puedan probar tu bot con Whatsapp será necesario que b
 # License<a id="sec-10" name="sec-10"></a>
 
 [MIT](https://choosealicense.com/licenses/mit/)
+

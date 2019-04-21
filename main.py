@@ -2,7 +2,7 @@ import json
 import requests
 import random
 from flask import Flask, request, make_response, jsonify
-from responses import PRECIO_PARTE
+from responses import PRECIO_PARTE, INFO_PARTE
 from config import (LOGON_ID, LOGON_PASSWORD,BASIC_AUTH)
 
 app = Flask(__name__)
@@ -44,15 +44,25 @@ def webhook():
 def get_part_price(part_number):
     response = part_request(part_number)
 
-    precio = response['PriceINMXN']
-    nombre = response['shortDescription']
+    if response is None: 
+        text = "El numero de parte es incorrecto"
+    else:
 
-    output_string = random.choice(PRECIO_PARTE)
+        precio = response['PriceINMXN']
+        nombre = response['shortDescription']
 
-    text = output_string.format(nombre = nombre, precio = precio)
+        output_string = random.choice(PRECIO_PARTE)
+
+        text = output_string.format(nombre = nombre, precio = precio)
 
     res = {"fulfillmentText": text,
             "fulfillmentMessages": [
+            {
+                "text": {
+                  "text": [text]
+                },
+                "platform": "FACEBOOK"
+              },
             {
                 "text": {
                   "text": [text]
@@ -72,15 +82,43 @@ def get_part_price(part_number):
 def get_part_info(part_number):
     response = part_request(part_number)
 
-    precio = response['PriceINMXN']
-    nombre = response['shortDescription']
+    if response is None: 
+        text = "El numero de parte es incorrecto"
+    else:
 
-    output_string = random.choice(PRECIO_PARTE)
+        precio = response['PriceINMXN']
+        nombre = response['name']
+        part_id = response['uniqueID']
+        descripcion = response['shortDescription']
 
-    text = output_string.format(nombre = nombre, precio = precio)
+        image = response['fullImage']
+
+        output_string = random.choice(INFO_PARTE)
+
+        text = output_string.format(id = part_id, nombre = nombre, precio = precio, descripcion = descripcion)
 
     res = {"fulfillmentText": text,
             "fulfillmentMessages": [
+
+           {
+                "image": {
+                  "imageUri": image
+                },
+                "platform": "FACEBOOK"
+              },
+
+            {
+                "text": {
+                  "text": [text]
+                },
+                "platform": "FACEBOOK"
+              },
+            {
+                "image": {
+                  "imageUri": image
+                },
+                "platform": "SLACK"
+              },
             {
                 "text": {
                   "text": [text]
@@ -90,7 +128,12 @@ def get_part_info(part_number):
             {"text": {
                     "text": [text]
                     }
+            },
+            {"text": {
+                    "text": ['URL de la imagen: ' + image]
+                    }
             }
+
       ]
       }
 
@@ -113,7 +156,10 @@ def part_request(part_number):
     response = requests.request("GET", url, json=payload, headers=headers)
 
     auth = None
-    return response.json()
+    if response.status_code == 200 or response.status_code == 201 :
+        return response.json()
+    else:
+        return None
 
     
 
@@ -131,12 +177,13 @@ def authenticate():
 
     response = requests.request("POST", url, json=payload, headers=headers)
 
-    print(response)
+    print(response.status_code)
     print(response.content)
 
-    print(type(json.loads(response.content)))
-
-    return response.json()
+    if response.status_code == 200 or response.status_code == 201 :
+        return response.json()
+    else: 
+        print("FALTAN CREDENCIALES")
 
 
 if __name__ == '__main__':
