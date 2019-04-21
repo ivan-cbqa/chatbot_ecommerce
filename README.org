@@ -1,4 +1,4 @@
-#+Chatbot de E-commerce(test) by Bosch
+#TITLE: Chatbot de E-commerce - test by Bosch
 * Introducción
 En este proyecto se mostrará cómo crear un chatbot en DialogFlow haciendo uso de un API externa para brindar información adicional al usuario, e integrar este chatbot con Facebook y Twilio.
 
@@ -10,6 +10,24 @@ Estos son los elementos que debemos considerar:
 - *Aplicación de Facebook Messenger.* Necesitaremos crear una aplicación en [[https://developers.facebook.com][Facebook for Developers]]. Esta aplicación se encargará de hacer la integración entre Facebook Messenger y DialogFlow para poder comunicarnos con nuestro usuario final.
 - *Twilio*. Permite integrar varios servicios de mensajería con un solo punto de contacto (SMS, Voz, Video y Whatsapp). 
 
+#+BEGIN_SRC plantuml :file ./images/architectura.png
+title Diagrama de arcuitectura
+
+MessageSystem->DialogFlow: Mensaje del usuario final
+note right of DialogFlow: Determina intent/entities
+DialogFlow -> Ngrock: HTTP Tunnel
+Ngrock -> WebApplication: Evaluar Webhook
+WebApplication -> Ecommerce: Login
+Ecommerce -> WebApplication: Información de producto
+WebApplication -> Ngrock: Mensaje enriquecido
+Ngrock -> DialogFlow: Forward
+DialogFlow->MessageSystem
+note right of MessageSystem: Comunicación con usuario final
+#+END_SRC
+
+#+RESULTS:
+[[file:./images/architectura.png]]
+
 * Requerimientos previos
 Antes de iniciar, asegúrate de tener los siguientes requerimientos:
 
@@ -17,6 +35,7 @@ Antes de iniciar, asegúrate de tener los siguientes requerimientos:
 - Descargar [[https://ngrok.com/download][ngrok]] y crear una cuenta.
 - Acceder a  [[https://console.dialogflow.com/api-client/#/login][DialogFlow]]  con una cuenta de Google.
 - Tener una página de [[https://www.facebook.com/help/104002523024878?helpref%3Dabout_content][Facebook]] creada. 
+- Tener una cuenta de [[https://www.twilio.com/][Twilio]] creada.
 - El editor de textos de su preferencia. 
 
 * Configuración de DialogFlow
@@ -39,9 +58,9 @@ Antes de iniciar, asegúrate de tener los siguientes requerimientos:
 1. Nos vamos a la carpeta donde se encuentra el repositorio.
 2. En la consola ejecutamos el siguiente comando para crear nuestro ambiente virtual:
 
-#+BEGIN_SRC bash
+``` bash
 python -m venv venv
-#+END_SRC
+````
 
 3. Instalamos los requirements con el siguiente comando:
 
