@@ -66,9 +66,9 @@ Antes de iniciar, asegúrate de tener los siguientes requerimientos:
 1.  Nos vamos a la carpeta donde se encuentra el repositorio.
 2.  En la consola ejecutamos el siguiente comando para crear nuestro ambiente virtual:
 
-\`\`\`bash
+```bash
 python -m venv venv
-\`\`\`\`
+```
 
 1.  Instalamos los requirements con el siguiente comando:
 
