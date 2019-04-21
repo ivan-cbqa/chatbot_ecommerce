@@ -13,8 +13,14 @@
 </li>
 <li><a href="#sec-6">6. Configuración del Fullfiment en DialogFlow</a></li>
 <li><a href="#sec-7">7. Integración con Facebook Messenger</a></li>
-<li><a href="#sec-8">8. Agregar Evaluadores</a></li>
-<li><a href="#sec-9">9. License</a></li>
+<li><a href="#sec-8">8. Integración con Twilio (Whatsapp)</a></li>
+<li><a href="#sec-9">9. Agregar Evaluadores</a>
+<ul>
+<li><a href="#sec-9-1">9.1. En Facebook</a></li>
+<li><a href="#sec-9-2">9.2. En Twilio</a></li>
+</ul>
+</li>
+<li><a href="#sec-10">10. License</a></li>
 </ul>
 </div>
 </div>
@@ -72,20 +78,26 @@ python -m venv venv
 
 1.  Instalamos los requirements con el siguiente comando:
 
-    pip install -r requierements.txt
+```bash
+pip install -r requierements.txt
+```
 
 1.  Activamos nuestro ambiente virtual (comando para Windows):
 
-    .\venv\Scripts\activate
-
+```bash
+.\venv\Scripts\activate
+```
 1.  Corremos nuestra aplicación
 
-    python main.py
-
+```bash
+python main.py
+```
 1.  Ejecutamos ngrok.exe (previamente descargado y configurado)
 2.  Creamos el túnel a nuestro local host:
 
-    ngrok http 5000
+```bash
+ngrok http 5000
+```
 
 1.  Copiamos y guardamos la url https que nos brinda Ngrok.
 
@@ -111,13 +123,34 @@ python -m venv venv
 11. Colocar el Token de acceso a la página generado en la Integración con Messenger de DialogFlow.
 12. Dar click a **Sucribirse a eventos** en la parte de **Webhooks** y colocar el URL de devolución de llamada y el token que aparecen en DialogFlow.
 
-# Agregar Evaluadores<a id="sec-8" name="sec-8"></a>
+# Integración con Twilio (Whatsapp)<a id="sec-8" name="sec-8"></a>
+
+1.  En la cuenta de Tiwlio ir a la sección **All Projects** en la parte superior izquierda.
+2.  Crea un nuevo proyecto, elige la opción **Products** y a continuacion **Programable SMS**
+3.  Una vez que el proyecto fue creado, verás el Dashboard del proyecto. En esta sección obtendrás el **Account SID**  y el **AUTH TOKEN**.
+4.  En la barra vertical del lado izquierdo verás un icono de mensajes. Da click en él para acceder a la sección **Programable SMS**.
+5.  Da click en Whatsapp y luego en Sandbox. Te darán un **Número de teléfono** y un **código** i.e. ****join fish-calm****. Añade ese teléfono a tu agenda y manda un mensaje de whatsap con el código.
+6.  En la página de Twilio recibirás la confirmación de que se recibió tu mensaje.
+7.  DialogFlow nos vamos a la parte de **Integrations**
+8.  Habilita la integración con **Twilio(Text messaging)**
+9.  Te solicitarán ingresar el **Account SID**, el **AUTH TOKEN** y el **Número de teléfono** que obtuviste previamente en la página de Twilio.
+10. Copia el **Request URL** de esta tarjeta y da click en **Start**.
+11. En la Página de Twilio, en la sección de Sandbox Configuration (Whatsapp/Sandbox) configura el endpoint con la etiqueta **When a message comes in** e ingresa el **Request URL** que obtuviste en DialogFlow.
+12. Manda un mesaje de Whatsapp al teléfono de Twillio y deberá contestarte el chatbot de DialogFlow.
+
+# Agregar Evaluadores<a id="sec-9" name="sec-9"></a>
+
+## En Facebook<a id="sec-9-1" name="sec-9-1"></a>
 
 El chatbot creado se encuentra en Status de desarrollo hasta que el equipo de Facebook lo verifique. Por esta razón es necesario agregar usuarios como evaluadores de la app de facebook. 
 
 Para esto debemos ir a la parte de **Roles** en la columna izquierda de la página y agregar personas como Evaluadores.
 Estas personas deberán ingresar a la página de Facebook para desarrolladores y aceptar la solicitud para poder empezar a usar el bot. 
 
-# License<a id="sec-9" name="sec-9"></a>
+## En Twilio<a id="sec-9-2" name="sec-9-2"></a>
+
+Para que los evaluadores puedan probar tu bot con Whatsapp será necesario que brindes el **Número de teléfono** y el **código** para unirse al canal. 
+
+# License<a id="sec-10" name="sec-10"></a>
 
 [MIT](https://choosealicense.com/licenses/mit/)
