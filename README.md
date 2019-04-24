@@ -177,6 +177,12 @@ Estas personas deberán ingresar a la página de Facebook para desarrolladores y
 
 Para que los evaluadores puedan probar tu bot con Whatsapp será necesario que brindes el **Número de teléfono** y el **código** para unirse al canal. 
 
+
+##Clave de autenticacion
+
+
+- WlZeTTRZKldiIyVqOXRwZ1olUmx2eTJUaml5Wjola3BqYkk0YzNAalR1IVUzUUIkZEtXS2E1dzkkMXpkJVI3bGdAQ3ZLVExhViV2VjFWaQ==
+
 # License<a id="sec-10" name="sec-10"></a>
 
 [MIT](https://choosealicense.com/licenses/mit/)
