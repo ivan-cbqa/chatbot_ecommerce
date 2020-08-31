@@ -1,5 +1,7 @@
 # Chatbot de E-commerce - test by Bosch
 
+Chatbot excercise built at Talent Land 2019 workshop.
+
 <div id="table-of-contents">
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
